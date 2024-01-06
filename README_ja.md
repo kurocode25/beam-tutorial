@@ -1,7 +1,7 @@
 # Beam Tutorial
 Beamチュートリアルのためのサンプルプログラムです。
 
-## サンプルプログラムの使い方
+## Beamチュートリアルについて
 これはBeamによるDB操作のチュートリアルのためのサンプルプログラムです。チュートリアルは[KURO DIGITAL LOG](https://blog.kurodigi.com/posts/beam-tutorial-01)にあります。
 
 ## サンプルプログラムの実行

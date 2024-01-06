@@ -2,8 +2,8 @@
 This is a sample program for the Beam tutorial.
 日本語版は[README\_ja.md](https://github.com/kurocode25/beam-tutorial/blob/main/README_ja.md)をご覧ください
 
-## How to use the sample program
-This is a sample program for a tutorial on DB operations using Beam. The tutorial is available at [KURO DIGITAL LOG](https://blog.kurodigi.com/posts/beam-tutorial-01).
+## What's this
+This is a sample program for a tutorial on DB operations using Beam. The tutorial is available at [KURO DIGITAL LOG](https://blog.kurodigi.com/posts/beam-tutorial-01)(Japanese only).
 
 ## Execute the sample program
 To run the sample program, run the following command.
