@@ -15,7 +15,7 @@ sample25 c = do
   u2 <- nextRandom
   tz  <- getZonedTime
   let l = zonedTimeToLocalTime tz
-  runBeamPostgres c $ runInsert $ insert (categories blogDatabase) $ do
+  runBeamPostgresDebug putStrLn c $ runInsert $ insert (categories blogDatabase) $ do
     insertValues [ Category u1 "Linux" "linux" l l
                  , Category u2 "News" "news" l l
                  ]
@@ -30,7 +30,7 @@ sample26 c = do
 
 sample27 :: Connection -> IO ()
 sample27 c =
-  runBeamPostgres c $ do
+  runBeamPostgresDebug putStrLn c $ do
     li <- runInsertReturningList $ insert (users blogDatabase) $ do
       insertExpressions [ User default_ (val_ "mike@example.com") (val_ "Mike") default_ default_
                         ]
@@ -42,19 +42,19 @@ sample28 :: Connection -> IO ()
 sample28 c = do
   runBeamPostgresDebug putStrLn c $ do
     Just u <- getUser "Tora"
-    Just ca <- getCategory "haskell"
+    Just ca <- getCategory "web"
     li <- runInsertReturningList $ insert (posts blogDatabase) $ do
       insertExpressions [ Post { postId = default_
-                               , postSlug = val_ "beam-tutorial"
-                               , postTitle = val_ "Beam tutorial (1)"
-                               , postMarkdown = val_ "hugahuga hogehoge"
+                               , postSlug = val_ "sample-post-04"
+                               , postTitle = val_ "Sample Post Title 04"
+                               , postMarkdown = val_ "## Sample"
                                , postCategory = val_ (primaryKey ca)
                                , postUser = val_ (primaryKey u)
                                , postCreatedAt = default_
                                , postUpdatedAt = default_
                                }
                         ]
-    Just t <- runSelectReturningOne $ select $ filter_ (\t -> tagSlug t ==. "web") $ all_ (tags blogDatabase)
+    Just t <- runSelectReturningOne $ select $ filter_ (\t -> tagSlug t ==. "haskell") $ all_ (tags blogDatabase)
     runInsert $ insert (posts_tags blogDatabase) $ do
       insertExpressions [ PostTag default_ (val_ $ primaryKey (Prelude.head li)) (val_ $ primaryKey t) ]
   where
